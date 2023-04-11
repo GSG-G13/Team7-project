@@ -7,14 +7,16 @@ DROP TABLE IF EXISTS users, posts;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY ,
     name VARCHAR(20) NOT NULL ,
-    
     email VARCHAR(60) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(60) NOT NULL,
+    mobile VArCHAR(60) ,
     img_url VARCHAR(255) 
 );
 
-INSERT INTO users (name, email, img_url) VALUES 
-('Khaled','khaled.f.toha@gmail.com', 'https://plus.unsplash.com/premium_photo-1670985631837-60435eb933e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
-('Momen' , 'xxx-xxxx@gmail.com', 'https://api.dicebear.com/6.x/personas/svg?seed=Maggie');
+INSERT INTO users (name, email, password, role, mobile, img_url) VALUES 
+('root','root@gmail.com', 'eyJhbGciOiJIUzI1NiJ9.cm9vdDIwMjM.Px97F7v88Qy0wGxhxAtWxZ0niULFHDwnOxdNMZSysqc','superAdmin', '0599000000', 'https://plus.unsplash.com/premium_photo-1670985631837-60435eb933e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+
 
 
 CREATE TABLE posts (
