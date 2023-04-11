@@ -1,0 +1,74 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users System</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading">Users System</h1>
+      <!-- <form class="form" action="/add-user" id="crud-form"> -->
+      <div class="form">
+        <input type="text" id="input-name" placeholder="Name" required />
+        <input type="email" id="input-email" placeholder="Email" required />
+        <input type="text" id="input-avatar-url" placeholder="avatar-url" />
+        <button type="submit" id="submitBtn">Create</button>
+      </div>
+      
+      <!-- </form> -->
+      <table id="crud-table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>avatar</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Table rows will be dynamically generated here -->
+          <!-- <tr>
+            
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="popup" >
+        
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+      
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+      
+          <label for="image">Image:</label>
+          <input type="text" id="image" name="image"  >
+      
+          <button class="update-button">Submit</button>
+        
+      </div>
+
+      <div class="popup post-pop" >
+        
+        <label for="name">title:</label>
+        <input type="text" id="name" name="name" required>
+    
+        
+    
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image"  >
+    
+        <button class="update-button">Submit</button>
+      
+    </div>
+
+    
+
+    <!-- CRUD Form and Table Scripts -->
+    <script src="../script/main.js"></script>
+  </body>
+</html>
