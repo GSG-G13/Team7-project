@@ -18,11 +18,12 @@ exports.getUsers = (req, res) => {
 };
 
 exports.addUser = (req, res) => {
+  console.log(req.body, '///////////////////');
   addUser(req.body)
     .then((data) => {
       res.json(data.rows);
     })
-    .catch((err) => res.status(500).send("Internal Error"));
+    .catch((err) => res.status(500).send(err));
 };
 
 exports.updateUserQuery = (req, res) => {
