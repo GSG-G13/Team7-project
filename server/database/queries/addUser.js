@@ -1,14 +1,17 @@
 
-
+require('dotenv').config();
 const { pool } = require("../config/connection");
 const {hashingFun} = require('../../controller/hashing');
-const { keys } = require("../../utilis/validation/postSchema");
-require('dotenv').config();
-const key = process.env.SECRET_KEY
+const cookie = require('cookie-signature')
+
+const key = process.env.PSC
 
 const addUser = (userData) => {
   const { name, avatarInput, emailInput, password, role, mobile } = userData;
-  const hashedPassword = hashingFun(password,key);
+  console.log(name, avatarInput, emailInput, password, role, mobile,'------------');
+  let hashedPassword;
+   hashingFun(password,key).then(result => hashedPassword = result).catch(err => console.log(err));
+
   
   return pool.query(
     
