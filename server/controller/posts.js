@@ -2,7 +2,7 @@
 
 const { getAllPosts } = require('../database/queries/index')
 const { addPost } = require('../database/queries/index')
-
+const postSchema = require("../utils/validation/postSchema");
 exports.getPosts = (req,res) => {
     getAllPosts()
     .then(result => res.json(result.rows))
