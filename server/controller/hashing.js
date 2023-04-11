@@ -1,6 +1,5 @@
 
 const jwt = require('jsonwebtoken');
-
 const hashingFun = (notHashed,key) => {
     return new Promise((resolve,reject)=>{
 
