@@ -88,9 +88,6 @@ function createUserRow(user) {
 
   actionsTd.appendChild(editSpan);
 
-  const separator = document.createTextNode(" | ");
-  actionsTd.appendChild(separator);
-
   editSpan.addEventListener("click", () => {
     popup.style.display = "block";
 
@@ -129,16 +126,14 @@ function createUserRow(user) {
   };
   actionsTd.appendChild(deleteSpan);
 
-  const separator2 = document.createTextNode(" | ");
-  actionsTd.appendChild(separator2);
 
-  const addBlogSpan = document.createElement("span");
-  addBlogSpan.classList.add("add-blog");
-  addBlogSpan.textContent = "Add blog";
-  addBlogSpan.style.cursor = 'pointer'
+  // const addBlogSpan = document.createElement("span");
+  // addBlogSpan.classList.add("add-blog");
+  // addBlogSpan.textContent = "Add blog";
+  // addBlogSpan.style.cursor = 'pointer'
   
-  addBlogSpan.addEventListener('click',()=>{
-    addPostPop.style.display = 'block'
+  // addBlogSpan.addEventListener('click',()=>{
+  //   addPostPop.style.display = 'block'
 
     const addPost = document.querySelector('.post-pop button')
     const postTitle = document.querySelector('.post-pop #name')
@@ -160,8 +155,8 @@ function createUserRow(user) {
 
     })
     // addPostPop.style.display = 'none'
-  })
-  actionsTd.appendChild(addBlogSpan);
+  // })
+  // actionsTd.appendChild(addBlogSpan);
 
   tr.appendChild(actionsTd);
 
@@ -196,5 +191,9 @@ submitBtn.addEventListener("click", () => {
       });
     });
 });
+
+
+
+
 
 
