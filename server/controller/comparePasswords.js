@@ -1,10 +1,11 @@
 const bcrypt = require('bcrypt');
 const {compareQuery} = require('../database/queries/getPasswordQuery');
 
-const comparePasswords = (email,password,cb) => {
-    let dbHash;
-    compareQuery(email).then(dbPass=>dbHash=dbPass)
-    bcrypt.compare(password,dbHash,cb);  
+const comparePasswords = (username,password,cb) => {
+    
+   return compareQuery(username).then(result=> result.rows[0].password).then(dbPassword=>bcrypt.compare(password,dbPassword,cb)).catch(err=>console.log(err));
+    
+    
 }
 
 module.exports = {

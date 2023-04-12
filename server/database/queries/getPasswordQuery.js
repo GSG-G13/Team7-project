@@ -1,7 +1,6 @@
 const {pool} = require('../config/connection');
-const compareQuery = (email) => {
-return pool.query('SELECT password FROM users WHERE email = $1',[email]);
+const compareQuery = (username) => {
+return pool.query('SELECT password FROM users WHERE name = $1',[username]);
 };
-
 
 module.exports = {compareQuery}

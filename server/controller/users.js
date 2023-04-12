@@ -9,7 +9,7 @@ const path = require("path");
 exports.getUsers = (req, res) => {
   getAllUsres()
     .then((result) => {
-      console.log(result.rows);
+      // console.log(result.rows);
       res.json(result.rows);
     })
     .catch((err) => {
@@ -19,11 +19,8 @@ exports.getUsers = (req, res) => {
 };
 
 exports.addUser = (req, res) => {
-  addUser(req.body)
-    .then((data) => {
-      res.json(data.rows);
-    })
-    .catch((err) => res.status(500).send("Internal Error"));
+  addUser(req.body);
+  res.redirect('/')
 };
 
 exports.updateUserQuery = (req, res) => {
@@ -35,7 +32,7 @@ exports.updateUserQuery = (req, res) => {
 };
 
 exports.deleteUserController = (req, res) => {
-  // console.log(req.params.id);
+ 
 
   deleteUserQuery(req.params.id)
     .then()
@@ -43,15 +40,17 @@ exports.deleteUserController = (req, res) => {
 };
 
 exports.verifyUser = (req,res) => {
-  const {email,password} = req.body;
-  comparePasswords(email,password,(err,result)=>{
+  const {username,password} = req.body;
+  comparePasswords(username,password,(err,result)=>{
     if (err) {
-      console.log(err);
+      console.log(err,'klajdlfke');
     } else {
       if (result) {
-        // if match 
+        console.log(result,'eeee');
+        console.log(result,'ldkfjdlkfj');
       } else {
-        // if not match
+        console.log(result,'ddd');
+        console.log('not mathed');
       }
     }
   })

@@ -15,10 +15,10 @@
         <input type="text" id="password" placeholder="password" required />
         <input type="text" id="image" placeholder="image url" required />
 
-        <select id="employee" name="employee_id" required>
-          <option >Select Role</option>
-          <option >Admin</option>
-          <option >User</option>
+        <select id="role-input" name="employee_id" required>
+          <option  >Select Role</option>
+          <option value="admin" >Admin</option>
+          <option  value="user">User</option>
       </select>
         <button type="submit" id="submitBtn">Create</button>
       </div>
@@ -28,11 +28,13 @@
         <thead>
           <tr>
             <th>id</th>
+            <th>avatar</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Password</th>
+            <!-- <th>Password</th> -->
             <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="table-body">
@@ -46,26 +48,25 @@
 
     <div class="popup">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="user-name" name="name" required />
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="user-email" name="email" required />
 
+      
+      <label for="phone">Phone:</label>
+      <input type="text" id="user-phone" name="phone" required />
+      
+      <label for="role">Role:</label>
+      <input type="text" id="user-role" name="role" required />
+      
       <label for="image">Image:</label>
-      <input type="text" id="image" name="image" />
+      <input type="text" id="user-image" name="image" />
 
       <button class="update-button">Submit</button>
     </div>
 
-    <div class="popup post-pop">
-      <label for="name">title:</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="image">Image:</label>
-      <input type="text" id="image" name="image" />
-
-      <button class="update-button">Submit</button>
-    </div>
+    
 
     <!-- CRUD Form and Table Scripts -->
     <script src="../script/main.js"></script>
