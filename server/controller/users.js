@@ -18,7 +18,6 @@ exports.getUsers = (req, res) => {
 };
 
 exports.addUser = (req, res) => {
-  console.log(req.body, '///////////////////');
   addUser(req.body)
     .then((data) => {
       res.json(data.rows);

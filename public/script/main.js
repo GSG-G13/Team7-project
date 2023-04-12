@@ -1,6 +1,9 @@
 const nameInput = document.querySelector("#input-name");
 const emailInput = document.querySelector("#input-email");
-const avatarInput = document.querySelector("#input-avatar-url");
+const phoneInput = document.querySelector('#phone')
+const avatarInput = document.querySelector("#image");
+const roleInput = document.querySelector('#role-input')
+const passwordInput = document.querySelector('#password')
 const submitBtn = document.querySelector("#submitBtn");
 const tableBody = document.querySelector("#table-body");
 const postsList = document.querySelector(".blog-posts");
@@ -77,6 +80,14 @@ function createUserRow(user) {
   emailTd.textContent = user.email;
   tr.appendChild(emailTd);
 
+  const phoneTd = document.createElement('td');
+  phoneTd.textContent = user.mobile
+  tr.appendChild(phoneTd)
+
+  const roleTd = document.createElement('td');
+  roleTd.textContent = user.role
+  tr.appendChild(roleTd)
+
   const actionsTd = document.createElement("td");
   actionsTd.classList.add("actions");
   const editSpan = document.createElement("span");
@@ -87,12 +98,16 @@ function createUserRow(user) {
 
   editSpan.addEventListener("click", () => {
     popup.style.display = "block";
-
-    const updateName = document.getElementById("name");
+    console.log(user);
+    const updateName = document.getElementById("user-name");
     updateName.value = user.name;
-    const updateEmail = document.getElementById("email");
+    const updateEmail = document.getElementById("user-email");
     updateEmail.value = user.email;
-    const updateImg = document.getElementById("image");
+    const updatePhone = document.getElementById("user-phone");
+    updatePhone.value = user.mobile;
+    const updateRole = document.getElementById("user-role");
+    updateRole.value = user.role;
+    const updateImg = document.getElementById("user-image");
     updateImg.value = user.img_url;
     const updateButton = document.querySelector(".update-button");
 
@@ -107,6 +122,8 @@ function createUserRow(user) {
           name: updateName.value,
           email: updateEmail.value,
           avatarInput: updateImg.value,
+          mobile: updatePhone.value,
+          role: updateRole.value
         }),
       }).then(window.location.reload());
     });
@@ -187,6 +204,9 @@ submitBtn.addEventListener("click", () => {
       name: nameInput.value,
       emailInput: emailInput.value,
       avatarInput: avatarInput.value,
+      password: passwordInput.value,
+      role: roleInput.value,
+      mobile: phoneInput.value
     }),
   })
     .then((res) => res.json())
