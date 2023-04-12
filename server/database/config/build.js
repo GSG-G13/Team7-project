@@ -1,13 +1,16 @@
+const { readFileSync } = require("fs");
+const { join } = require("path");
+const { pool } = require("./connection.js");
 
+const createTablesQuery = readFileSync(join(__dirname, "build.sql"), "utf-8");
+function buildDB() {
+  try {
+    pool.query(createTablesQuery);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-const { readFileSync }  = require('fs')
+buildDB();
 
-const { join } = require('path')
-
-const dbBuild = () => {
-  const sql = readFileSync(join(__dirname, "build.sql")).toString();
-  
-  return connection.query(sql);
-};
-
-module.exports = { dbBuild };
+module.exports = { buildDB };
