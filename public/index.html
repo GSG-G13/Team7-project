@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Blog Posts</title>
-    <link rel="stylesheet" href="./styles/blogs.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -14,24 +14,27 @@
 
   <body>
     <header>
-      <h1>My Blog</h1>
-
-      <form class="search-form">
-        <input type="text" placeholder="Search..." />
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-
-      <div class="buttons">
-        <a href="users/signUp.html"> <button class="signUp">Sign Up</button></a>
-        <a href="users/login.html"> <button class="login">Login</button></a>
-
-        <a href="./users"><button class="users">Users</button></a>
-      </div>
+      <nav>
+        <div class="logo">
+          <a href="index.html"><img src="./img/logo.png" alt="My Website" /></a>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <button type="submit">Search</button>
+        </div>
+        <div class="buttons">
+          <a href="users/signUp.html">
+            <button class="signUp">Sign Up</button></a
+          >
+          <a href="users/login.html"> <button class="login">Sign In</button></a>
+          <a href="./users"><button class="users">Users</button></a>
+        </div>
+      </nav>
     </header>
 
     <main>
       <section class="blog-posts">
-        <div class="blog-post">
+        <!-- <div class="blog-post">
           <img src="https://source.unsplash.com/random" alt="Blog Post 1" />
           <h2>Blog Post Title 1</h2>
           <div class="post-owner">
@@ -42,28 +45,54 @@
             <p class="user-name">By Author Name</p>
             <p class="post-date">Publication Date</p>
           </div>
-        </div>
+        </div> -->
+        
+      </section>
 
-        <!-- Additional blog post cards go here -->
+      <!-- Additional blog post cards go here -->
 
+      <!-- <div class="popup post-pop">
+        <label for="name">title:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" />
+
+        <button id="add-post">Submit</button>
+        <button id="cancel-pop-button" style="background: red">Cancel</button>
+      </div> -->
+    </main>
+
+    <!-- poup  -->
+
+    <div class="button-container">
+      <button class="add-button" id="add_btn">+</button>
+    </div>
+
+    <div id="post-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
         <div class="popup post-pop">
-          <label for="name">title:</label>
+          <label for="name">Title:</label>
           <input type="text" id="name" name="name" required />
-    
+          <br />
+          <!-- <label for="description">Description:</label>
+          <textarea id="description" name="description"></textarea> -->
+          <br />
           <label for="image">Image:</label>
           <input type="text" id="image" name="image" />
-    
-          <button id="add-post">Submit</button>
-          <button id="cancel-pop-button" style="background: red">Cancel</button>
-          
+          <br />
+          <button type="submit" id="add-post">Submit</button>
         </div>
-      </section>
-    </main>
-    <footer>
+      </div>
+    </div>
+
+    <!-- <footer>
       <p>Contact Information</p>
-      <p>Copyright Information</p>
-      <!-- Additional footer content goes here -->
-    </footer>
+      <p>Copyright Information</p> -->
+    <!-- Additional footer content goes here -->
+    <!-- </footer> -->
     <script src="./script/main.js"></script>
+  
   </body>
 </html>

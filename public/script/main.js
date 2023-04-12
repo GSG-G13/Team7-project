@@ -1,9 +1,9 @@
 const nameInput = document.querySelector("#input-name");
 const emailInput = document.querySelector("#input-email");
-const phoneInput = document.querySelector('#phone')
+const phoneInput = document.querySelector("#phone");
 const avatarInput = document.querySelector("#image");
-const roleInput = document.querySelector('#role-input')
-const passwordInput = document.querySelector('#password')
+const roleInput = document.querySelector("#role-input");
+const passwordInput = document.querySelector("#password");
 const submitBtn = document.querySelector("#submitBtn");
 const tableBody = document.querySelector("#table-body");
 const postsList = document.querySelector(".blog-posts");
@@ -11,18 +11,43 @@ const postsList = document.querySelector(".blog-posts");
 const popup = document.querySelector(".popup");
 const addPostPop = document.querySelector(".post-pop");
 
-const renderBlogPost = (post) => {
-  const postDiv = document.createElement("div");
-  postDiv.className = "blog-post";
+const openModalBtn = document.getElementById("add_btn");
+const closeModalBtn = document.getElementsByClassName("close")[0];
+const modal = document.getElementById("post-modal");
 
-  const img = document.createElement("img");
-  img.src = post.post_img;
-  img.alt = "Blog Post ";
-  postDiv.appendChild(img);
+openModalBtn.onclick = function () {
+  modal.style.display = "block";
+};
+
+closeModalBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+const renderBlogPost = (post) => {
+
+  const postDiv = document.createElement("article");
+  const postImg = document.createElement("img");
+  postImg.src = post.post_img;
+  postImg.alt = "Blog Post ";
+  postDiv.appendChild(postImg);
+
+  const blogPost = document.createElement("div");
+  blogPost.className = "blog-post";
 
   const h2 = document.createElement("h2");
   h2.textContent = post.title;
-  postDiv.appendChild(h2);
+  blogPost.appendChild(h2);
+
+  const postDateP = document.createElement("p");
+  postDateP.className = "post-data";
+  postDateP.textContent = post.post_date.split("T")[0];
+  blogPost.appendChild(postDateP);
 
   const postOwnerDiv = document.createElement("div");
   postOwnerDiv.className = "post-owner";
@@ -37,21 +62,15 @@ const renderBlogPost = (post) => {
   userNameP.textContent = post.name;
   postOwnerDiv.appendChild(userNameP);
 
-  const postDateP = document.createElement("p");
-  postDateP.className = "post-date";
-  postDateP.textContent = post.post_date.splice("T")[0];
-  postOwnerDiv.appendChild(postDateP);
-
-  postDiv.appendChild(postOwnerDiv);
-
+  blogPost.appendChild(postOwnerDiv);
+  postDiv.appendChild(blogPost);
+  console.log(postDiv);
   return postDiv;
 };
 
 fetch("/posts")
   .then((result) => result.json())
   .then((result) => {
-    console.log(result);
-    result;
     postsList.textContent = "";
     result.forEach((item) => {
       postsList.appendChild(renderBlogPost(item));
@@ -80,13 +99,13 @@ function createUserRow(user) {
   emailTd.textContent = user.email;
   tr.appendChild(emailTd);
 
-  const phoneTd = document.createElement('td');
-  phoneTd.textContent = user.mobile
-  tr.appendChild(phoneTd)
+  const phoneTd = document.createElement("td");
+  phoneTd.textContent = user.mobile;
+  tr.appendChild(phoneTd);
 
-  const roleTd = document.createElement('td');
-  roleTd.textContent = user.role
-  tr.appendChild(roleTd)
+  const roleTd = document.createElement("td");
+  roleTd.textContent = user.role;
+  tr.appendChild(roleTd);
 
   const actionsTd = document.createElement("td");
   actionsTd.classList.add("actions");
@@ -123,7 +142,7 @@ function createUserRow(user) {
           email: updateEmail.value,
           avatarInput: updateImg.value,
           mobile: updatePhone.value,
-          role: updateRole.value
+          role: updateRole.value,
         }),
       }).then(window.location.reload());
     });
@@ -156,7 +175,7 @@ function createUserRow(user) {
 
   return tr;
 }
- const addPostPopUp = document.querySelector("#create-post");
+const addPostPopUp = document.querySelector("#create-post");
 
 const exitPostPop = document.querySelector("#cancel-pop-button");
 
@@ -185,6 +204,7 @@ const postImg = document.querySelector(".post-pop #image");
 //   }).then((addPostPop.style.display = "none"));
 // });
 
+
 fetch("/hh")
   .then((res) => res.json())
   .then((usersData) => {
@@ -206,7 +226,7 @@ submitBtn.addEventListener("click", () => {
       avatarInput: avatarInput.value,
       password: passwordInput.value,
       role: roleInput.value,
-      mobile: phoneInput.value
+      mobile: phoneInput.value,
     }),
   })
     .then((res) => res.json())
