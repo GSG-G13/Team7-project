@@ -1,6 +1,9 @@
 const nameInput = document.querySelector("#input-name");
 const emailInput = document.querySelector("#input-email");
-const avatarInput = document.querySelector("#input-avatar-url");
+const phoneInput = document.querySelector('#phone')
+const avatarInput = document.querySelector("#image");
+const roleInput = document.querySelector('#role-input')
+const passwordInput = document.querySelector('#password')
 const submitBtn = document.querySelector("#submitBtn");
 const tableBody = document.querySelector("#table-body");
 const postsList = document.querySelector('.blog-posts')
@@ -37,7 +40,7 @@ const renderBlogPost = (post)=>{
   
     const postDateP = document.createElement("p");
     postDateP.className = "post-date";
-    postDateP.textContent = post.post_date.splice('T')[0];
+    postDateP.textContent = post.post_date.split('T')[0];
     postOwnerDiv.appendChild(postDateP);
   
     postDiv.appendChild(postOwnerDiv);
@@ -55,6 +58,7 @@ fetch('/posts')
   result.forEach((item)=>{
     postsList.appendChild(renderBlogPost(item))
   })
+  console.log(postsList);
 })
 
 
@@ -80,6 +84,14 @@ function createUserRow(user) {
   emailTd.textContent = user.email;
   tr.appendChild(emailTd);
 
+  const phoneTd = document.createElement('td');
+  phoneTd.textContent = user.mobile
+  tr.appendChild(phoneTd)
+
+  const roleTd = document.createElement('td');
+  roleTd.textContent = user.role
+  tr.appendChild(roleTd)
+
   const actionsTd = document.createElement("td");
   actionsTd.classList.add("actions");
   const editSpan = document.createElement("span");
@@ -90,12 +102,16 @@ function createUserRow(user) {
 
   editSpan.addEventListener("click", () => {
     popup.style.display = "block";
-
-    const updateName = document.getElementById("name");
+    console.log(user);
+    const updateName = document.getElementById("user-name");
     updateName.value = user.name;
-    const updateEmail = document.getElementById("email");
+    const updateEmail = document.getElementById("user-email");
     updateEmail.value = user.email;
-    const updateImg = document.getElementById("image");
+    const updatePhone = document.getElementById("user-phone");
+    updatePhone.value = user.mobile;
+    const updateRole = document.getElementById("user-role");
+    updateRole.value = user.role;
+    const updateImg = document.getElementById("user-image");
     updateImg.value = user.img_url;
     const updateButton = document.querySelector(".update-button");
 
@@ -110,6 +126,8 @@ function createUserRow(user) {
           name: updateName.value,
           email: updateEmail.value,
           avatarInput: updateImg.value,
+          mobile: updatePhone.value,
+          role: updateRole.value
         }),
       }).then(window.location.reload());
       
@@ -127,13 +145,7 @@ function createUserRow(user) {
   actionsTd.appendChild(deleteSpan);
 
 
-  // const addBlogSpan = document.createElement("span");
-  // addBlogSpan.classList.add("add-blog");
-  // addBlogSpan.textContent = "Add blog";
-  // addBlogSpan.style.cursor = 'pointer'
   
-  // addBlogSpan.addEventListener('click',()=>{
-  //   addPostPop.style.display = 'block'
 
     const addPost = document.querySelector('.post-pop button')
     const postTitle = document.querySelector('.post-pop #name')
@@ -154,9 +166,7 @@ function createUserRow(user) {
       }).then(addPostPop.style.display = 'none')
 
     })
-    // addPostPop.style.display = 'none'
-  // })
-  // actionsTd.appendChild(addBlogSpan);
+   
 
   tr.appendChild(actionsTd);
 
@@ -182,6 +192,9 @@ submitBtn.addEventListener("click", () => {
       name: nameInput.value,
       emailInput: emailInput.value,
       avatarInput: avatarInput.value,
+      password: passwordInput.value,
+      role: roleInput.value,
+      mobile: phoneInput.value
     }),
   })
     .then((res) => res.json())
