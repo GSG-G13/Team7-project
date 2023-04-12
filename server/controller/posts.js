@@ -2,6 +2,7 @@
 
 const { getAllPosts } = require('../database/queries/index')
 const { addPost } = require('../database/queries/index')
+const { searchPost } = require('../database/queries/postSearch')
 const postSchema = require("../utilis/validation/postSchema");
 exports.getPosts = (req,res) => {
     getAllPosts()
@@ -16,4 +17,11 @@ exports.addPostFunc = (req,res) => {
         res.send(data.rows.json())
       })
       .catch((err) => res.status(500).send(err));
+}
+
+exports.searchForPost = (req,res)=>{
+    searchPost(req.body)
+    .then((data) => {
+        res.json(data.rows)})
+    .catch(err => res.status(500).send('Internal Server Error'))
 }
