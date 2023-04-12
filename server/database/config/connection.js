@@ -33,6 +33,7 @@ const pool = new Pool({
   connectionString: dbUrl,
   ssl: false,
 });
+ 
 
 module.exports = {
   pool,

@@ -1,4 +1,4 @@
-
+const inputs = document.querySelectorAll(".input");
 const signBtn = document.querySelector("#signup-btn");
 const nameInput = document.querySelector("#username");
 const passInput = document.querySelector("#password");
@@ -7,22 +7,22 @@ const emailInput = document.querySelector("#email");
 const phoneInput = document.querySelector("#phone");
 const avatarInput = document.querySelector("#avatar");
 
+function addcl() {
+  let parent = this.parentNode.parentNode;
+  parent.classList.add("focus");
+}
 
-//   let parent = this.parentNode.parentNode;
-//   parent.classList.add("focus");
-// }
+function remcl() {
+  let parent = this.parentNode.parentNode;
+  if (this.value == "") {
+    parent.classList.remove("focus");
+  }
+}
 
-// function remcl() {
-//   let parent = this.parentNode.parentNode;
-//   if (this.value == "") {
-//     parent.classList.remove("focus");
-//   }
-// }
-
-// inputs.forEach((input) => {
-//   input.addEventListener("focus", addcl);
-//   input.addEventListener("blur", remcl);
-// });
+inputs.forEach((input) => {
+  input.addEventListener("focus", addcl);
+  input.addEventListener("blur", remcl);
+});
 
 signBtn.addEventListener("click", () => {
   console.log('ahmed'); // ??!!

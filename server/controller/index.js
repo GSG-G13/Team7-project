@@ -22,6 +22,7 @@ router.post("/users", users.addUser);
 router.put("/users", users.updateUserQuery);
 
 router.post('/login',users.verifyUser);
+router.post('/search', posts.searchForPost)
 
 
 

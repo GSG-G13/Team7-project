@@ -30,4 +30,8 @@ CREATE TABLE posts (
 INSERT INTO posts (user_id, title,  post_date, post_img) VALUES 
 (1, 'HELLO', '2023-04-05', 'https://images.unsplash.com/photo-1668936132135-f2844ef1735b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4MDc2ODQ0Mg&ixlib=rb-4.0.3&q=80&w=1080');
 
+
+select title , post-img,post_date
+ from posts 
+
 COMMIT;
