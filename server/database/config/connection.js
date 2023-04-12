@@ -4,9 +4,9 @@ const { Pool } = require("pg");
 // let dbUrl = "";
 
 if (process.env.NODE_ENV === "test") {
-  dbUrl = process.env.DEV_DB_URL;
+  dbUrl = process.env.DB_URL;
 } else {
-  dbUrl = process.env.DEV_DB_URL;
+  dbUrl = process.env.DB_URL;
 }
 
 // let ssl = false;

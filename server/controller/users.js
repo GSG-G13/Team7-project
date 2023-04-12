@@ -2,13 +2,14 @@ const { getAllUsres } = require("../database/queries/index");
 const { addUser } = require("../database/queries/index");
 const { updateUserQuery } = require("../database/queries/index");
 const { deleteUserQuery } = require("../database/queries/index");
+const {comparePasswords} = require("../controller/comparePasswords");
 
 const path = require("path");
 
 exports.getUsers = (req, res) => {
   getAllUsres()
     .then((result) => {
-      console.log(result.rows);
+      
       res.json(result.rows);
     })
     .catch((err) => {
@@ -18,11 +19,8 @@ exports.getUsers = (req, res) => {
 };
 
 exports.addUser = (req, res) => {
-  addUser(req.body)
-    .then((data) => {
-      res.json(data.rows);
-    })
-    .catch((err) => res.status(500).send(err));
+  addUser(req.body);
+  res.redirect('/')
 };
 
 exports.updateUserQuery = (req, res) => {
@@ -34,9 +32,27 @@ exports.updateUserQuery = (req, res) => {
 };
 
 exports.deleteUserController = (req, res) => {
-  // console.log(req.params.id);
+ 
 
   deleteUserQuery(req.params.id)
     .then()
     .catch((err) => res.status(500).send(err));
 };
+
+exports.verifyUser = (req,res) => {
+  const {username,password} = req.body;
+  comparePasswords(username,password,(err,result)=>{
+    if (err) {
+      console.log(err,'klajdlfke');
+    } else {
+      if (result) {
+        console.log(result,'eeee');
+        console.log(result,'ldkfjdlkfj');
+      } else {
+        console.log(result,'ddd');
+        console.log('not mathed');
+      }
+    }
+  })
+
+}

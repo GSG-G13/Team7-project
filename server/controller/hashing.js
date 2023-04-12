@@ -1,16 +1,12 @@
+const bcrypt = require('bcrypt');
 
-const jwt = require('jsonwebtoken');
-const hashingFun = (notHashed,key) => {
-    return new Promise((resolve,reject)=>{
-        let result ;
-        jwt.sign(notHashed,key,(err,hashed)=>{
-           if (err) {
-               reject(err)
-           } else {
-            resolve(hashed)
-               
-           }
-       });
-    })
+const hashingFun =  (notHashed,cb) => {
+    bcrypt.hash(notHashed,10,cb)
 }
-module.exports = {hashingFun}
+module.exports = {
+    hashingFun
+}
+
+
+
+
