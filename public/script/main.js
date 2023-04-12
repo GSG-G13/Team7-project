@@ -153,7 +153,7 @@ exitPostPop.addEventListener("click", () => {
   addPostPop.style.display = "none";
 });
 addPost.addEventListener("click", () => {
-  console.log("fuck");
+
   fetch("/posts", {
     method: "POST",
     headers: {
