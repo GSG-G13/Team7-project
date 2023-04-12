@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const {compareQuery} = require('../database/queries/getPasswordQuery');
 
-const comparePasswords = (username,password,cb) => {
-    
-   return compareQuery(username).then(result=> result.rows[0].password).then(dbPassword=>bcrypt.compare(password,dbPassword,cb)).catch(err=>console.log(err));
-    
+const comparePasswords = (user,pass,cb) => {
+    console.log(user,pass,'inside');
+//     console.log('dldd');
+compareQuery(user).then(result=> result.rows[0].password).then(dbPassword=>bcrypt.compare(pass,dbPassword,cb)).catch(err=>console.log(err));
+console.log('after query');
+//     // 
     
 }
 
