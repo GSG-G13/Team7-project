@@ -156,34 +156,34 @@ function createUserRow(user) {
 
   return tr;
 }
-const addPostPopUp = document.querySelector("#create-post");
+ const addPostPopUp = document.querySelector("#create-post");
 
 const exitPostPop = document.querySelector("#cancel-pop-button");
 
 const addPost = document.querySelector("#add-post");
 const postTitle = document.querySelector(".post-pop #name");
 const postImg = document.querySelector(".post-pop #image");
-addPostPopUp.addEventListener("click", () => {
-  addPostPop.style.display = "flex";
-});
-exitPostPop.addEventListener("click", () => {
-  addPostPop.style.display = "none";
-});
-addPost.addEventListener("click", () => {
+// addPostPopUp.addEventListener("click", () => {
+//   addPostPop.style.display = "flex";
+// });
+// exitPostPop.addEventListener("click", () => {
+//   addPostPop.style.display = "none";
+// });
+// addPost.addEventListener("click", () => {
 
-  fetch("/posts", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({
-      id: user.id,
-      title: postTitle.value,
-      img_url: postImg.value,
-      date: "2023-04-06",
-    }),
-  }).then((addPostPop.style.display = "none"));
-});
+//   fetch("/posts", {
+//     method: "POST",
+//     headers: {
+//       "Content-type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       user_id: 1,
+//       title: postTitle.value,
+//       img_url: postImg.value,
+//       date: "2023-04-06",
+//     }),
+//   }).then((addPostPop.style.display = "none"));
+// });
 
 fetch("/hh")
   .then((res) => res.json())
