@@ -7,7 +7,7 @@ const passwordInput = document.querySelector('#password')
 const submitBtn = document.querySelector("#submitBtn");
 const tableBody = document.querySelector("#table-body");
 const postsList = document.querySelector(".blog-posts");
-
+const searhInput = document.getElementById('search-input-field');
 const popup = document.querySelector(".popup");
 const addPostPop = document.querySelector(".post-pop");
 
@@ -29,17 +29,17 @@ const renderBlogPost = (post) => {
 
   const userAvatarImg = document.createElement("img");
   userAvatarImg.className = "user-avatar";
-  userAvatarImg.src = post.img_url;
+  userAvatarImg.src = post.img_url?? '../img/avatar.svg';
   postOwnerDiv.appendChild(userAvatarImg);
 
   const userNameP = document.createElement("p");
   userNameP.className = "user-name";
-  userNameP.textContent = post.name;
+  userNameP.textContent = post.name ?? 'kkk';
   postOwnerDiv.appendChild(userNameP);
 
   const postDateP = document.createElement("p");
   postDateP.className = "post-date";
-  postDateP.textContent = post.post_date.splice("T")[0];
+  postDateP.textContent = post.post_date.split("T")[0];
   postOwnerDiv.appendChild(postDateP);
 
   postDiv.appendChild(postOwnerDiv);
@@ -58,104 +58,31 @@ fetch("/posts")
     });
   });
 
-function createUserRow(user) {
-  const tr = document.createElement("tr");
+  searhInput.addEventListener('keyup' , (e)=>{
+    fetch('/search',{
+      method:'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        searchTerm: e.target.value
+      })
+    }).then((respnse) => respnse.json())
+    .then((posts)=>{ 
+      
+      const handle = (posts)=>{
+      postsList.textContent = '';
+      
+      posts.forEach((post)=>{
+        
+        postsList.appendChild(renderBlogPost(post))
+      })
+    }
+    handle(posts)
+  })
+  })
 
-  const idTd = document.createElement("td");
-  idTd.textContent = user.id;
-  tr.appendChild(idTd);
 
-  const avatarTd = document.createElement("td");
-  const avatarImg = document.createElement("img");
-  avatarImg.src = user.img_url;
-  avatarImg.classList.add("avatar");
-  avatarTd.appendChild(avatarImg);
-  tr.appendChild(avatarTd);
-
-  const nameTd = document.createElement("td");
-  nameTd.textContent = user.name;
-  tr.appendChild(nameTd);
-
-  const emailTd = document.createElement("td");
-  emailTd.textContent = user.email;
-  tr.appendChild(emailTd);
-
-  const phoneTd = document.createElement('td');
-  phoneTd.textContent = user.mobile
-  tr.appendChild(phoneTd)
-
-  const roleTd = document.createElement('td');
-  roleTd.textContent = user.role
-  tr.appendChild(roleTd)
-
-  const actionsTd = document.createElement("td");
-  actionsTd.classList.add("actions");
-  const editSpan = document.createElement("span");
-  editSpan.classList.add("edit");
-  editSpan.textContent = "Edit";
-
-  actionsTd.appendChild(editSpan);
-
-  editSpan.addEventListener("click", () => {
-    popup.style.display = "block";
-    console.log(user);
-    const updateName = document.getElementById("user-name");
-    updateName.value = user.name;
-    const updateEmail = document.getElementById("user-email");
-    updateEmail.value = user.email;
-    const updatePhone = document.getElementById("user-phone");
-    updatePhone.value = user.mobile;
-    const updateRole = document.getElementById("user-role");
-    updateRole.value = user.role;
-    const updateImg = document.getElementById("user-image");
-    updateImg.value = user.img_url;
-    const updateButton = document.querySelector(".update-button");
-
-    updateButton.addEventListener("click", () => {
-      fetch("/users", {
-        method: "PUT",
-        headers: {
-          "Content-type": "Application/json",
-        },
-        body: JSON.stringify({
-          id: user.id,
-          name: updateName.value,
-          email: updateEmail.value,
-          avatarInput: updateImg.value,
-          mobile: updatePhone.value,
-          role: updateRole.value
-        }),
-      }).then(window.location.reload());
-    });
-  });
-
-  const deleteSpan = document.createElement("span");
-  deleteSpan.classList.add("delete");
-  deleteSpan.textContent = "Delete";
-  deleteSpan.onclick = function () {
-    fetch(`/users/${user.id}`, {
-      method: "DELETE",
-    }).then(window.location.reload());
-  };
-  actionsTd.appendChild(deleteSpan);
-
-  // const addBlogSpan = document.createElement("span");
-  // addBlogSpan.classList.add("add-blog");
-  // addBlogSpan.textContent = "Add blog";
-  // addBlogSpan.style.cursor = 'pointer'
-
-  // addBlogSpan.addEventListener('click',()=>{
-  //   addPostPop.style.display = 'block'
-  // create-post
-
-  // addPostPop.style.display = 'none'
-  // })
-  // actionsTd.appendChild(addBlogSpan);
-
-  tr.appendChild(actionsTd);
-
-  return tr;
-}
  const addPostPopUp = document.querySelector("#create-post");
 
 const exitPostPop = document.querySelector("#cancel-pop-button");
@@ -185,34 +112,5 @@ const postImg = document.querySelector(".post-pop #image");
 //   }).then((addPostPop.style.display = "none"));
 // });
 
-fetch("/hh")
-  .then((res) => res.json())
-  .then((usersData) => {
-    tableBody.textContent = "";
-    usersData.forEach((user) => {
-      tableBody.append(createUserRow(user));
-    });
-  });
 
-submitBtn.addEventListener("click", () => {
-  fetch("/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: nameInput.value,
-      emailInput: emailInput.value,
-      avatarInput: avatarInput.value,
-      password: passwordInput.value,
-      role: roleInput.value,
-      mobile: phoneInput.value
-    }),
-  })
-    .then((res) => res.json())
-    .then((usersData) => {
-      usersData.forEach((user) => {
-        tableBody.append(createUserRow(user));
-      });
-    });
-});
+

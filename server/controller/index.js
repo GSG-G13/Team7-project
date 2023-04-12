@@ -19,6 +19,8 @@ router.post("/users", users.addUser);
 
 router.put("/users", users.updateUserQuery);
 
+router.post('/search', posts.searchForPost)
+
 
 
 router.delete("/users/:id", users.deleteUserController);
