@@ -2,6 +2,7 @@ const { getAllUsres } = require("../database/queries/index");
 const { addUser } = require("../database/queries/index");
 const { updateUserQuery } = require("../database/queries/index");
 const { deleteUserQuery } = require("../database/queries/index");
+const {comparePasswords} = require("../controller/comparePasswords");
 
 const path = require("path");
 
@@ -40,3 +41,19 @@ exports.deleteUserController = (req, res) => {
     .then()
     .catch((err) => res.status(500).send(err));
 };
+
+exports.verifyUser = (req,res) => {
+  const {email,password} = req.body;
+  comparePasswords(email,password,(err,result)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      if (result) {
+        // if match 
+      } else {
+        // if not match
+      }
+    }
+  })
+
+}

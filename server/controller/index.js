@@ -1,7 +1,6 @@
 require('dotenv').config();
 const key = process.env.SECRET_KEY
 
-require('dotenv').config();
 
 const express = require("express");
 
@@ -11,6 +10,9 @@ const users = require("./users");
 
 const posts = require("./posts");
 
+
+
+
 router.get("/posts", posts.getPosts);
 
 router.get("/hh", users.getUsers);
@@ -18,6 +20,8 @@ router.get("/hh", users.getUsers);
 router.post("/users", users.addUser);
 
 router.put("/users", users.updateUserQuery);
+
+router.post('/login',users.verifyUser);
 
 
 
