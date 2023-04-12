@@ -21,7 +21,7 @@ const password = document.querySelector("#password");
 // });
 
 loginBtn.addEventListener("click",()=>{
-  console.log('from event');
+  
   fetch("/login",{
     headers: {"Content-type": "application/json"},
     method: "POST",

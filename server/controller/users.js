@@ -2,8 +2,7 @@ const { getAllUsres } = require("../database/queries/index");
 const { addUser } = require("../database/queries/index");
 const { updateUserQuery } = require("../database/queries/index");
 const { deleteUserQuery } = require("../database/queries/index");
-const {comparePasswords} = require("../controller/comparePasswords");
-
+const {comparePasswords} = require("../controller/comparePasswords")
 const path = require("path");
 
 exports.getUsers = (req, res) => {
@@ -41,18 +40,27 @@ exports.deleteUserController = (req, res) => {
 
 exports.verifyUser = (req,res) => {
   const {username,password} = req.body;
-  comparePasswords(username,password,(err,result)=>{
-    if (err) {
-      console.log(err,'klajdlfke');
-    } else {
-      if (result) {
-        console.log(result,'eeee');
-        console.log(result,'ldkfjdlkfj');
-      } else {
-        console.log(result,'ddd');
-        console.log('not mathed');
-      }
-    }
-  })
+  console.log(username,password,'from control');
+comparePasswords(username,password,(err,res)=>{
+  if (err) {
+    console.log(err,'err');
+  } else {
+    console.log(res,'result');
+  }
+})
+  
+  // comparePasswords(username,password,(err,result)=>{
+  //   if (err) {
+  //     console.log(err,'klajdlfke');
+  //   } else {
+  //     if (result) {
+  //       console.log(result,'eeee');
+  //       console.log(result,'ldkfjdlkfj');
+  //     } else {
+  //       console.log(result,'ddd');
+  //       console.log('not mathed');
+  //     }
+  //   }
+  // })
 
 }
