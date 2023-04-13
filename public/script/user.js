@@ -1,3 +1,15 @@
+const tableBody = document.getElementById('table-body')
+const nameInput = document.querySelector("#input-name");
+const emailInput = document.querySelector("#input-email");
+const phoneInput = document.querySelector("#phone");
+const avatarInput = document.querySelector("#image");
+const roleInput = document.querySelector("#role-input");
+const passwordInput = document.querySelector("#password");
+const submitBtn = document.querySelector("#submitBtn");
+const popup = document.querySelector(".popup");
+
+
+
 function createUserRow(user) {
     const tr = document.createElement("tr");
   

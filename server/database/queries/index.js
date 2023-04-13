@@ -8,11 +8,14 @@ const { updateUserQuery } = require("./updateUserQuery");
 const { deleteUserQuery } = require("./deleteUserQuery");
 const { addPost } = require('./addPost')
 
+const { deletePost } = require('./deletePost')
+
 module.exports = {
   getAllUsres,
   getAllPosts,
   addUser,
   updateUserQuery,
   deleteUserQuery,
-  addPost
+  addPost,
+  deletePost
 };
