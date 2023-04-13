@@ -25,7 +25,7 @@ inputs.forEach((input) => {
 });
 
 signBtn.addEventListener("click", () => {
-  console.log("kkk");
+  console.log('ahmed'); // ??!!
   fetch("/users", {
     headers: {
       "Content-type": "application/json",
@@ -41,6 +41,6 @@ signBtn.addEventListener("click", () => {
       role: "user",
     }),
   })
-    .then((res) => console.log(res))
-    .catch((error) => console.log(error));
+  .then((res) => console.log(res))
+  .catch((error) => console.log(error));
 });
