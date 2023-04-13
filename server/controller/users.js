@@ -8,6 +8,7 @@ const path = require("path");
 exports.getUsers = (req, res) => {
   getAllUsres()
     .then((result) => {
+      // console.log(result.rows);
       
       res.json(result.rows);
     })
